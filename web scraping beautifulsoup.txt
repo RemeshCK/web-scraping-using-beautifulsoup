@@ -1,0 +1,89 @@
+text= "pinku kurian"
+
+url = 'https://google.com/search?q=' + text
+
+ 
+
+#pip install urllib2
+
+ 
+
+# Fetch the URL data using requests.get(url),
+
+# store it in a variable, request_result.
+
+request_result=requests.get( url )
+
+ 
+
+# Creating soup from the fetched request
+
+soup = bs4.BeautifulSoup(request_result.text,
+
+                         "html.parser")
+
+#print(soup)#
+
+ 
+
+heading_object=soup.find_all( 'h3' )
+
+ 
+
+# Iterate through the object
+
+# and print it as a string.
+
+for info in heading_object:
+
+    print(info.getText())
+
+    print("------")
+
+for link in soup.find_all('a'):
+
+print(link.get('href')) # get the link
+
+*************************
+
+pip install google
+
+query : query string that we want to search for.
+
+tld : tld stands for top level domain which means we want to search our result on google.com or google.in or some other domain.
+
+lang : lang stands for language.
+
+num : Number of results we want.
+
+start : First result to retrieve.
+
+stop : Last result to retrieve. Use None to keep searching forever.
+
+pause : Lapse to wait between HTTP requests. Lapse too short may cause Google to block your IP. Keeping significant lapse will make your program slow but its safe and better option.
+
+Return : Generator (iterator) that yields found URLs. If the stop parameter is None the iterator will loop forever.
+
+****************************
+
+try:
+
+    from googlesearch import search
+
+except ImportError:
+
+    print("No module named 'google' found")
+
+ 
+
+# to search
+
+query = "Geeksforgeeks"
+
+ 
+
+for j in search(query, tld="co.in", num=10, stop=10, pause=2):
+
+    print(j)
+
+               
